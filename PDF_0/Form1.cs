@@ -7,7 +7,9 @@ namespace PDF_0
 {
     public partial class Form1 : Form
     {
-        //PDFの結合えお行うプログラム
+        //PDFの結合を行うプログラム
+        //このプロジェクトのように、追加パッケージを入れたものは
+        //実行ファイルのみで動くわけがないことに注意しなければならない(1敗)
         public Form1()
         {
             InitializeComponent();
@@ -15,7 +17,9 @@ namespace PDF_0
         public string DesktopFilepath = "C:\\Users\\" + Environment.UserName + "\\Desktop\\";
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "PDF結合専用ソフト";
             Open_setting();
+            Size = new System.Drawing.Size(400, 100);
         }
         void Open_setting()
         {
