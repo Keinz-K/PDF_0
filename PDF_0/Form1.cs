@@ -64,7 +64,8 @@ namespace PDF_0
 
             // PDFを読み込み（修正可能として開く）
             PdfDocument inputDocument = PdfReader.Open(inputFilePath, PdfDocumentOpenMode.Import);
-
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel) return;
+            string outputFilePath = ""; 
             // 各ページごとに新しいPDFを作成して保存
             for (int idx = 0; idx < inputDocument.PageCount; idx++)
             {
@@ -78,7 +79,7 @@ namespace PDF_0
                 outputDocument.AddPage(inputDocument.Pages[idx]);
 
                 // ファイル名を作成
-                string outputFilePath = $"output_page_{idx + 1}.pdf";
+                 outputFilePath = $"{folderBrowserDialog1.SelectedPath}\\output_page_{idx + 1}.pdf";
 
                 // 保存
                 outputDocument.Save(outputFilePath);
