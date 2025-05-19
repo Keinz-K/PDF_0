@@ -42,7 +42,7 @@ namespace PDF_0
                 //ファイルを開く
                 PdfDocument inputPdfDocument = PdfReader.Open(file, PdfDocumentOpenMode.Import);
                 //１ページずつ出力ファイルに追加
-                for (int i = 0; i < inputPdfDocument.PageCount-1; i++)
+                for (int i = 0; i < inputPdfDocument.PageCount; i++)
                 {
                     outputPdfDocument.AddPage(inputPdfDocument.Pages[i]);
                 }
