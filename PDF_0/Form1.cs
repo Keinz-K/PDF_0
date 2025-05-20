@@ -46,14 +46,11 @@ namespace PDF_0
                 {
                     outputPdfDocument.AddPage(inputPdfDocument.Pages[i]);
                 }
-                //ファイルを閉じる
-                //inputPdfDocument.Close();
             }
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel) return;
             //出力
             outputPdfDocument.Save(saveFileDialog1.FileName);
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "分割するファイルを指定";
@@ -61,7 +58,6 @@ namespace PDF_0
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel) return;
             // 元のPDFファイルのパス
             string inputFilePath = openFileDialog1.FileName;
-
             // PDFを読み込み（修正可能として開く）
             PdfDocument inputDocument = PdfReader.Open(inputFilePath, PdfDocumentOpenMode.Import);
             if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel) return;
@@ -74,13 +70,10 @@ namespace PDF_0
                 outputDocument.Version = inputDocument.Version;
                 outputDocument.Info.Title = $"Page {idx + 1} of {inputDocument.Info.Title}";
                 outputDocument.Info.Creator = inputDocument.Info.Creator;
-
                 // 対象ページを追加
                 outputDocument.AddPage(inputDocument.Pages[idx]);
-
                 // ファイル名を作成
                  outputFilePath = $"{folderBrowserDialog1.SelectedPath}\\output_page_{idx + 1}.pdf";
-
                 // 保存
                 outputDocument.Save(outputFilePath);
                 Console.WriteLine($"Saved: {outputFilePath}");
